@@ -1,3 +1,5 @@
+import { watchSettings } from '@/lib/settings';
+
 const OVERLAY_ID = 'hls-catcher-preview';
 const FORCE_ID = 'hls-catcher-force';
 const TICK_MS = 500;
@@ -10,6 +12,7 @@ const TICK_MS = 500;
 export default defineContentScript({
   matches: ['*://*.twitch.tv/*'],
   main() {
+    let enabled = true;
     let overlay: HTMLVideoElement | null = null;
     let badge: HTMLElement | null = null;
     let mainVideo: HTMLVideoElement | null = null;
@@ -39,7 +42,7 @@ export default defineContentScript({
       if (pbp.volume !== vol) pbp.volume = vol;
       if (pbp.paused) void pbp.play().catch(() => {});
       if (badge) {
-        badge.textContent = `HLS Catcher · stream (sans pub)${pbp.muted || pbp.volume === 0 ? ' · muet' : ''}`;
+        badge.textContent = `TchonkExt · stream (sans pub)${pbp.muted || pbp.volume === 0 ? ' · muet' : ''}`;
       }
     }
 
@@ -71,7 +74,7 @@ export default defineContentScript({
       const b = document.createElement('div');
       b.style.cssText =
         'position:absolute;top:8px;left:8px;padding:2px 8px;border-radius:4px;background:#7c3aedcc;color:#fff;font:12px sans-serif;pointer-events:none;';
-      b.textContent = 'HLS Catcher · stream (sans pub)';
+      b.textContent = 'TchonkExt · stream (sans pub)';
       v.after(b);
 
       overlay = v;
@@ -93,6 +96,11 @@ export default defineContentScript({
     }
 
     function tick(): void {
+      if (!enabled) {
+        if (overlay) stop();
+        return;
+      }
+
       // A manual "Forcer" already owns the player.
       if (document.getElementById(FORCE_ID)) {
         if (overlay) stop();
@@ -117,6 +125,9 @@ export default defineContentScript({
       applyAudio();
     }
 
+    watchSettings((s) => {
+      enabled = s.adPreview;
+    });
     setInterval(tick, TICK_MS);
   },
 });

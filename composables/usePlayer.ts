@@ -1,3 +1,4 @@
+import { getSettings } from '@/lib/settings';
 import Hls from 'hls.js';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
@@ -78,7 +79,9 @@ export function usePlayer(src: string) {
       return;
     }
 
-    setAutoPip(v);
+    void getSettings().then((s) => {
+      if (s.autoPip) setAutoPip(v);
+    });
 
     v.addEventListener('playing', () => {
       status.value = 'playing';

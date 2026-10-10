@@ -7,7 +7,7 @@ const params = new URLSearchParams(location.search);
 const src = params.get('src') ?? '';
 const title = params.get('title') ?? '';
 
-if (title) document.title = `${title} — HLS Catcher`;
+if (title) document.title = `TchonkExt : ${title}`;
 
 const { video, levels, currentLevel, status, errorMsg, setLevel } = usePlayer(src);
 </script>

@@ -1,4 +1,18 @@
-# HLS Catcher
+# TchonkExt
+
+Chrome extension (MV3, built with [WXT](https://wxt.dev)) made of small, independent
+features. Each one can be turned on or off from the options page (gear icon in the popup, or
+the extension's "Options").
+
+| Feature | Where | What it does |
+| --- | --- | --- |
+| Stream detection (HLS Catcher) | Twitch | Detects the HLS stream, lists qualities in the popup, opens it in a built-in player |
+| Automatic Picture-in-Picture | Built-in player | Enters PiP when you switch to another tab |
+| Ad preview | Twitch | During an ad, shows the stream of Twitch's small preview player (with its audio) instead |
+| No Premium popups | YouTube, YouTube Music | Hides the banners and dialogs that sell Premium |
+| Search map | Google (European domains) | Adds a Google Maps card to search results |
+
+## HLS Catcher
 
 Chrome extension (MV3, built with [WXT](https://wxt.dev)) that **detects the HLS stream of a
 Twitch channel** and lets you **open it alone in a tab**, in a built-in player, with a
@@ -33,7 +47,7 @@ bun run dev          # launches Chrome with the extension in HMR
 bun run compile      # TypeScript check (vue-tsc)
 bun run check        # Biome format + lint (--write)
 bun run build        # production build -> .output/chrome-mv3
-bun run zip          # distributable package -> .output/hls-catcher-<version>-chrome.zip
+bun run zip          # distributable package -> .output/tchonkext-<version>-chrome.zip
 ```
 
 Load manually: `chrome://extensions` → developer mode → "Load unpacked" →

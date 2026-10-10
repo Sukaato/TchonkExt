@@ -63,7 +63,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: hls-catcher-dev-${{ matrix.browser }}
+          name: tchonkext-dev-${{ matrix.browser }}
           path: .output/*.zip
           if-no-files-found: error
           include-hidden-files: true
@@ -80,7 +80,7 @@ jobs:
           script: |
             const version = '${{ needs.version.outputs.dev-version }}';
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const marker = '<!-- hls-catcher-dev -->';
+            const marker = '<!-- tchonkext-dev -->';
             const body = [
               marker,
               '## 📦 Build de dev disponible',

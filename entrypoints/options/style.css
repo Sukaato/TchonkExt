@@ -1,0 +1,7 @@
+@import "../popup/style.css";
+
+/* Same theme as the popup, but as a regular page instead of a 380px panel. */
+body {
+  width: auto;
+  min-height: 100vh;
+}

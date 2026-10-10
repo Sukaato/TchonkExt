@@ -38,7 +38,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: hls-catcher-${{ matrix.browser }}
+          name: tchonkext-${{ matrix.browser }}
           path: .output/*.zip
           if-no-files-found: error
           include-hidden-files: true

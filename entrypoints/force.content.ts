@@ -52,7 +52,7 @@ export default defineContentScript({
     const badge = document.createElement('div');
     badge.style.cssText =
       'position:absolute;top:8px;left:8px;padding:2px 8px;border-radius:4px;background:#7c3aedcc;color:#fff;font:12px sans-serif;pointer-events:none;';
-    badge.textContent = `HLS Catcher · ${req.label}`;
+    badge.textContent = `TchonkExt · ${req.label}`;
     v.after(badge);
 
     // Follow Twitch's own volume, and keep its (ad) audio silent.
@@ -79,7 +79,7 @@ export default defineContentScript({
       if (!data.fatal) return;
       if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
       else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
-      else badge.textContent = `HLS Catcher · erreur (${data.details})`;
+      else badge.textContent = `TchonkExt · erreur (${data.details})`;
     });
 
     // Hand the player back to Twitch: stop hls.js, drop the overlay, restore audio.

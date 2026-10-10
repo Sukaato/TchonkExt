@@ -1,4 +1,5 @@
 import { parsePlaylist } from '@/lib/m3u8';
+import { watchSettings } from '@/lib/settings';
 import type { CapturedStream } from '@/lib/types';
 
 const IS_CHROME = import.meta.env.CHROME;
@@ -23,6 +24,10 @@ export default defineBackground(() => {
   /** player tabId -> DNR session rule id (referer spoofing). */
   const playerRules = new Map<number, number>();
   let ruleIdSeq = 2000;
+  let enabled = true;
+  watchSettings((s) => {
+    enabled = s.hlsCatcher;
+  });
 
   // ----------------------------------------------------------------- helpers --
   const idFor = (url: string): string => {
@@ -113,7 +118,7 @@ export default defineBackground(() => {
   }
 
   const record = (tabId: number, url: string, referer?: string): void => {
-    if (tabId < 0) return;
+    if (!enabled || tabId < 0) return;
     const channel = twitchChannel(url);
     if (!channel) return; // only the channel master playlist
 
@@ -203,7 +208,7 @@ export default defineBackground(() => {
         ] as never,
       });
     } catch (e) {
-      console.warn('[HLS Catcher] could not add referer rule', e);
+      console.warn('[TchonkExt] could not add referer rule', e);
     }
   }
 

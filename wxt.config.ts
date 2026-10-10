@@ -8,8 +8,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   }),
   manifest: {
-    name: 'HLS Catcher',
-    description: 'Ouvre le stream Twitch (HLS) seul dans un onglet, avec le choix de la qualité.',
+    name: 'TchonkExt',
+    description:
+      'Streams Twitch HLS, preview à la place des pubs, YouTube sans popups Premium, carte dans les recherches Google.',
     // usher.ttvnw.net = master playlist ; *.ttvnw.net = playlists de qualité + segments
     // (nécessaire pour l'observation webRequest et la règle Referer du lecteur).
     permissions: [
@@ -21,7 +22,7 @@ export default defineConfig({
     ],
     host_permissions: ['*://*.twitch.tv/*', '*://*.ttvnw.net/*'],
     action: {
-      default_title: 'HLS Catcher',
+      default_title: 'TchonkExt',
     },
   },
 });
