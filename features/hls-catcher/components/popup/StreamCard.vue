@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import QualityList from '@/components/popup/QualityList.vue';
-import { useCopy } from '@/composables/useCopy';
-import type { CapturedStream } from '@/lib/types';
+import QualityList from '@/features/hls-catcher/components/popup/QualityList.vue';
+import { useCopy } from '@/features/hls-catcher/composables/useCopy';
+import type { CapturedStream } from '@/features/hls-catcher/lib/types';
 import { Check, Copy, ExternalLink, Play, RefreshCw } from '@lucide/vue';
 import { computed } from 'vue';
 

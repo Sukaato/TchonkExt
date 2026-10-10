@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import FeatureToggle from '@/components/options/FeatureToggle.vue';
 import { useSettings } from '@/composables/useSettings';
-import { GROUPS } from '@/lib/features';
+import { GROUPS } from '@/features';
+import { computed } from 'vue';
 
 const { settings, ready, update } = useSettings();
+
+// Features are described by data, so settings are read by key here.
+const values = computed(() => settings.value as Record<string, boolean | string>);
 </script>
 
 <template>
@@ -24,26 +28,24 @@ const { settings, ready, update } = useSettings();
           :key="f.key"
           :title="f.title"
           :description="f.description"
-          :model-value="settings[f.key]"
+          :model-value="values[f.key] as boolean"
           @update:model-value="update({ [f.key]: $event })"
         >
-          <span
-            v-if="f.key === 'searchMap'"
-            class="mt-2 flex items-center gap-2 text-[13px]"
-          >
-            Afficher pour
+          <span v-if="f.select" class="mt-2 flex items-center gap-2 text-[13px]">
+            {{ f.select.label }}
             <select
               class="rounded-md border border-border bg-bg px-1.5 py-1 text-fg disabled:opacity-50"
-              :disabled="!settings.searchMap"
-              :value="settings.searchMapMode"
+              :disabled="!values[f.key]"
+              :value="values[f.select.key]"
               @change="
                 update({
-                  searchMapMode: ($event.target as HTMLSelectElement).value as 'local' | 'all',
+                  [f.select.key]: ($event.target as HTMLSelectElement).value,
                 })
               "
             >
-              <option value="local">les recherches de lieux</option>
-              <option value="all">toutes les recherches</option>
+              <option v-for="o in f.select.options" :key="o.value" :value="o.value">
+                {{ o.label }}
+              </option>
             </select>
           </span>
         </FeatureToggle>

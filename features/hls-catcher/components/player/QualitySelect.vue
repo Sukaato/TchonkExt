@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Level } from '@/composables/usePlayer';
+import type { Level } from '@/features/hls-catcher/composables/usePlayer';
 
 defineProps<{ levels: Level[]; currentLevel: number }>();
 const emit = defineEmits<{ change: [index: number] }>();

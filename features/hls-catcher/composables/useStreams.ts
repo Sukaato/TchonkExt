@@ -1,4 +1,4 @@
-import type { CapturedStream } from '@/lib/types';
+import type { CapturedStream } from '@/features/hls-catcher/lib/types';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { browser } from 'wxt/browser';
 

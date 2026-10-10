@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import EmptyState from '@/components/popup/EmptyState.vue';
-import PopupHeader from '@/components/popup/PopupHeader.vue';
-import StreamCard from '@/components/popup/StreamCard.vue';
-import { useStreams } from '@/composables/useStreams';
+import EmptyState from '@/features/hls-catcher/components/popup/EmptyState.vue';
+import PopupHeader from '@/features/hls-catcher/components/popup/PopupHeader.vue';
+import StreamCard from '@/features/hls-catcher/components/popup/StreamCard.vue';
+import { useStreams } from '@/features/hls-catcher/composables/useStreams';
 
 const { streams, ready, forceError, forceQuality, retry, openPlayer, openRaw, clearAll } =
   useStreams();

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import QualitySelect from '@/components/player/QualitySelect.vue';
-import type { Level, PlayerStatus } from '@/composables/usePlayer';
+import QualitySelect from '@/features/hls-catcher/components/player/QualitySelect.vue';
+import type { Level, PlayerStatus } from '@/features/hls-catcher/composables/usePlayer';
 import { ExternalLink } from '@lucide/vue';
 import { computed } from 'vue';
 

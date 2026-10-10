@@ -1,28 +1,20 @@
+import {
+  type AdPreviewSettings,
+  type AutoPipSettings,
+  FEATURES,
+  type HlsCatcherSettings,
+  type NoPremiumSettings,
+  type SearchMapSettings,
+} from '@/features';
 import { storage } from 'wxt/utils/storage';
 
-export interface Settings {
-  /** Detect Twitch HLS streams, popup with quality list and built-in player. */
-  hlsCatcher: boolean;
-  /** Picture-in-Picture automatically when the player tab goes to background. */
-  autoPip: boolean;
-  /** Show the stream preview in place of the Twitch ad. */
-  adPreview: boolean;
-  /** Hide the Premium upsells on YouTube and YouTube Music. */
-  noPremiumPopups: boolean;
-  /** Show a map next to Google search results. */
-  searchMap: boolean;
-  /** 'local' = only for place-like queries, 'all' = every search. */
-  searchMapMode: 'local' | 'all';
-}
+export type Settings = HlsCatcherSettings &
+  AutoPipSettings &
+  AdPreviewSettings &
+  NoPremiumSettings &
+  SearchMapSettings;
 
-export const DEFAULTS: Settings = {
-  hlsCatcher: true,
-  autoPip: true,
-  adPreview: true,
-  noPremiumPopups: true,
-  searchMap: true,
-  searchMapMode: 'local',
-};
+export const DEFAULTS = Object.assign({}, ...FEATURES.map((f) => f.defaults)) as Settings;
 
 const item = storage.defineItem<Settings>('sync:settings', { fallback: DEFAULTS });
 

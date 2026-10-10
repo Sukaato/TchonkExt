@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ErrorOverlay from '@/components/player/ErrorOverlay.vue';
-import PlayerBar from '@/components/player/PlayerBar.vue';
-import { usePlayer } from '@/composables/usePlayer';
+import ErrorOverlay from '@/features/hls-catcher/components/player/ErrorOverlay.vue';
+import PlayerBar from '@/features/hls-catcher/components/player/PlayerBar.vue';
+import { usePlayer } from '@/features/hls-catcher/composables/usePlayer';
 
 const params = new URLSearchParams(location.search);
 const src = params.get('src') ?? '';

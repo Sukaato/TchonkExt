@@ -12,6 +12,26 @@ the extension's "Options").
 | No Premium popups | YouTube, YouTube Music | Hides the banners and dialogs that sell Premium |
 | Search map | Google (European domains) | Adds a Google Maps card to search results |
 
+## Structure
+
+Each feature lives in its own folder under `features/`: its code, plus a `meta.ts` (pure data:
+setting key, title, description, defaults) that feeds the options page and the stored settings.
+`entrypoints/` only holds thin wrappers that WXT requires (manifest entries) and call into
+`features/`.
+
+```
+features/
+  hls-catcher/         stream detection, popup, built-in player, "force" on the Twitch page
+  auto-pip/            Picture-in-Picture when the player tab goes to background
+  ad-preview/          stream preview in place of Twitch ads
+  youtube-no-premium/  Premium upsells removal
+  search-map/          Google search map
+  index.ts             registry of all features (options page, default settings)
+```
+
+Adding a feature = a new folder with a `meta.ts`, an entry in `features/index.ts`, and its
+entrypoint wrapper.
+
 ## HLS Catcher
 
 Chrome extension (MV3, built with [WXT](https://wxt.dev)) that **detects the HLS stream of a

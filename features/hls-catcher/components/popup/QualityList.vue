@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useCopy } from '@/composables/useCopy';
-import type { Variant } from '@/lib/types';
+import { useCopy } from '@/features/hls-catcher/composables/useCopy';
+import type { Variant } from '@/features/hls-catcher/lib/types';
 import { Check, Copy, Lock, Play } from '@lucide/vue';
 
 defineProps<{ variants: Variant[] }>();
